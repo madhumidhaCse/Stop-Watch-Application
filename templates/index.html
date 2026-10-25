@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Stopwatch</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<main class="container">
+    <header class="header">
+        <h1>Enhanced Stopwatch</h1>
+        <p>Track time. Record laps. Analyze performance.</p>
+    </header>
+
+    <section class="stopwatch-card">
+        <label for="sessionName">Session Name</label>
+        <input type="text" id="sessionName" maxlength="100"
+               placeholder="Enter session name" value="My Stopwatch Session">
+        <div id="display" class="display" role="timer" aria-live="off">00:00:00.000</div>
+        <div class="button-group">
+            <button id="startBtn" class="btn start">Start</button>
+            <button id="lapBtn" class="btn lap" disabled>Lap</button>
+            <button id="pauseBtn" class="btn pause" disabled>Pause</button>
+            <button id="resetBtn" class="btn reset">Reset</button>
+        </div>
+        <button id="saveBtn" class="btn save" disabled>Save Session</button>
+        <p id="message" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="panel">
+        <h2>Lap Records</h2>
+        <div class="table-container">
+            <table>
+                <thead><tr><th>Lap</th><th>Lap Duration</th><th>Total Elapsed</th></tr></thead>
+                <tbody id="lapTable">
+                    <tr><td colspan="3">No laps recorded yet.</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="panel">
+        <div class="section-heading">
+            <h2>Saved Sessions</h2>
+            <button id="refreshBtn" class="btn refresh">Refresh</button>
+        </div>
+        <div id="sessionsList">Loading sessions...</div>
+    </section>
+
+    <section class="panel" id="chartPanel" hidden>
+        <h2>Lap Time Analysis</h2>
+        <img id="chartImage" class="chart-image" alt="Bar chart comparing lap durations">
+    </section>
+</main>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
